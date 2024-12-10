@@ -1,0 +1,150 @@
+entity-types: # a tree of types, with dot style notes
+ - name: person # TODO: deal with multiple people, i.e. populations
+   graphviz:
+     shape: box
+   subtypes:
+   - name: individual
+   - name: corporation
+     graphviz:
+       style: rounded
+ - name: institution
+   graphviz:
+    shape:  hexagon
+ - name: information
+   graphviz:
+     shape: note
+   subtypes:
+    - name: code
+    - name: standard
+    - name: model
+    - name: content
+ - name: machine
+   graphviz:
+     shape: ellipse
+ - name: service
+   graphviz:
+     shape: ellipse
+ - name: use case
+   graphviz:
+     shape: plain
+
+
+relation-types:
+ - owns:
+    subject: person
+ - governs:
+    subject: institution
+ - implements:
+    object: standard
+ - creates:
+    subject: person
+    object: information
+ - operates:
+    subject: corporaton
+    object: machine
+
+
+
+entities:
+  - name: Amazon
+    type: corporation # should this have the complete information?
+  - name: Apple
+    type: corporation # should this have the complete information?
+  - name: Cloudflare
+    type: corporation
+  - name: Google
+    type: corporation
+  - name: Microsoft
+    type: corporation
+  - name: NVIDIA
+    type: corporation
+  - name: OpenAI
+    type: corporation
+  - name: End User
+    type: natural
+  - name: iOS
+    type: code
+  - name: Android
+    type: code
+  - name: iPhone
+    type: machine
+  - name: CDN
+    type: service
+  - name: Cloud Computing
+    type: service
+  - name: Content Host
+    type: corporation
+  - name: browser
+    type: service
+  - name: content
+    type: content
+  - name: domain registry
+    type: service
+  - name: GPU
+    type: machine
+  - name: AI training
+    type: use case
+
+relations:
+- subject: End User
+  verb: owns
+  object: iPhone
+- subject: End User
+  verb: uses
+  object: browser
+- subject: Apple
+  verb: sells
+  object: iPhone
+- subject: Apple
+  verb: sells
+  object: iOS
+- subject: Cloudflare
+  verb: operates
+  object: CDN
+- subject: Amazon
+  verb: operates
+  object: Cloud Computing
+- subject: Google
+  verb: operates
+  object: Cloud Computing
+- subject: Microsoft
+  verb: operates
+  object: Cloud Computing
+- subject: Content Host
+  verb: employs
+  object: CDN
+- subject: browser
+  verb: runs on
+  object: iOS
+- subject: iOS
+  verb: runs on
+  object: iPhone
+- subject: browser
+  verb: runs on
+  object: Android
+- subject: Content Host
+  verb: serves
+  object: content
+- subject: browser
+  verb: reads
+  object: content
+- subject: domain registry
+  verb: runs on
+  object: Cloud Computing
+- subject: NVIDIA
+  verb: sells
+  object: GPU
+- subject: AI training
+  verb: requires
+  object: GPU
+- subject: AI training
+  verb: case for
+  object: Cloud Computing
+- subject: Microsoft
+  verb: invests in
+  object: OpenAI
+- subject: OpenAI
+  verb: does
+  object: AI training  
+
+# strategies:
