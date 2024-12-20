@@ -1,0 +1,167 @@
+entity-types: # a tree of types, with dot style notes
+ - name: person # TODO: deal with multiple people, i.e. populations
+   graphviz:
+     shape: box
+   subtypes:
+   - name: individual
+   - name: corporation
+     graphviz:
+       style: rounded
+ - name: institution
+   graphviz:
+    shape:  hexagon
+ - name: information
+   graphviz:
+     shape: note
+   subtypes:
+    - name: code
+    - name: standard
+    - name: model
+    - name: content
+ - name: machine
+   graphviz:
+     shape: ellipse
+ - name: service
+   graphviz:
+     shape: ellipse
+ - name: use case
+   graphviz:
+     shape: plain
+ - name: future # TODO: deal with multiple people, i.e. populations
+   graphviz:
+     shape: round
+   subtypes:
+   - name: Societal Impact
+   - name: Tech Adaption
+
+entities:
+  - name: Bias
+    type: use case
+  - name: Capacity
+    type: use case
+  - name: Capacity Building
+    type: use case
+  - name: Collaboration
+    type: use case
+  - name: Compliance
+    type: use case
+  - name: Consumers
+    type: person
+  - name: Convergance
+    type: use case
+  - name: Conversation
+    type: use case
+  - name: Corporates
+    type: institution 
+  - name: Data
+    type: use case
+  - name: Development
+    type: use case
+  - name: Digital Divide
+    type: use case
+  - name: Economy
+    type: use case
+  - name: Fundamental Questions
+    type: use case
+  - name: Government Behavior
+    type: use case
+  - name: Incentives
+    type: use case
+  - name: Inherent Pluralities
+    type: use case
+  - name: Interventions
+    type: use case
+  - name: Law Enforcement
+    type: use case
+  - name: Lobbyists
+    type: person
+  - name: Malignant Effects
+    type: use case
+  - name: Measurement
+    type: use case
+  - name: Monopoly
+    type: use case
+  - name: People
+    type: person
+  - name: Products
+    type: use case
+  - name: Regulators
+    type: person
+  - name: Research
+    type: use case
+  - name: Researchers
+    type: person
+  - name: Science
+    type: use case
+  - name: Shared Belief
+    type: use case
+  - name: Societal Impact
+    type: use case
+  - name: Society
+    type: use case
+  - name: Supply Chain
+    type: use case
+  - name: Tech Adoption
+    type: use case
+  - name: Technical Problems
+    type: use case
+  - name: Technology
+    type: use case
+  - name: The Equilibrium
+    type: use case
+  - name: The Ultimate Driver
+    type: use case
+  - name: Tech Gains
+    type: use case
+  - name: Shared Interest
+    type: use case
+  - name: Economic Change
+    type: use case
+  - name: Technologists
+    type: person
+  - name: Grand Challenge
+    type: use case
+  - name: Institutions
+    type: use case
+  - name: Sponsors
+    type: institution
+  - name: Geo Strategies
+    type: use case
+  - name: Law
+    type: use case
+  - name: Behavior Model
+    type: use case
+  - name: AI Training
+    type: use case
+  - name: Policy 
+    type: use case
+  - name: Design
+    type: use case
+  - name: Countries
+    type: use case
+  - name: Lawmakers
+    type: person
+  - name: Law Suits
+    type: use case
+  - name: Enviromental Change
+    type: use case
+  - name: Risk Mitigation
+    type: use case
+  - name: Market Pressure
+    type: use case
+  - name: Economic Forecasting
+    type: use case
+  - name: Future
+    type: use case
+  - name: Government
+    type: institution
+  - name: AI Explainability
+    type: use case
+  - name: Overhype Research
+    type: use case
+  - name: Social Change
+    type: use case 
+  - name: Oversight
+    type: use case 
+  - name: Regulation
+    type: use case  
