@@ -1,4 +1,5 @@
 from copy import deepcopy
+import math
 import networkx as nx
 import pydot
 
@@ -20,9 +21,11 @@ def data_to_graph(style, relations):
         for entity in style['entities']
     }
 
+    # can probably rewrite with more succinct NX call?
+
     for relation in relations.iterrows():
-        nsubject = relation[1]['Subject']
-        nobject = relation[1]['Object']
+        nsubject = relation[1]['subject']
+        nobject = relation[1]['object']
         
         if nsubject not in g.nodes() and nsubject in node_data:
             g.add_node(nsubject, **node_data[nsubject])
@@ -33,7 +36,8 @@ def data_to_graph(style, relations):
         g.add_edge(
             nsubject, # will be lower case _s_ubject later, etc.
             nobject,
-            verb = relation[1]['Verb']
+            verb = relation[1]['verb'],
+            context = relation[1]['context']
         )
             
     return g
@@ -87,14 +91,34 @@ def imho_graph_to_dot(imhog, style, layout="dot"):
             node.set(attr, gv_attr[attr])
 
         dot.add_node(node)
+
+    edges = list(imhog.edges(data=True))
+
+    clusters = {}
+
+    for edge in edges:
+        context = edge[2]['context']
+    
+        if context not in clusters:
+            clusters[context] = []
+    
+        clusters[context].append(edge)
         
-    for e in imhog.edges(data=True):
-        dot.add_edge(
-            pydot.Edge(
-                e[0],
-                e[1],
-                label = e[2]['verb']
-            ))
+    for context in clusters:
+        if not isinstance(context, str) and math.isnan(context):
+            g = dot
+        else:
+            cluster = pydot.Cluster(graph_name = context, label = context)
+            dot.add_subgraph(cluster)
+            g = cluster
+
+        for edge in clusters[context]:
+            g.add_edge(
+                pydot.Edge(
+                    edge[0],
+                    edge[1],
+                    label = edge[2]['verb']
+                ))
 
     for n in dot.get_nodes():
         # Change the style of all nodes
